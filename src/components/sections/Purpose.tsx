@@ -58,14 +58,14 @@ export function Purpose() {
   );
 
   return (
-    <section ref={root} id="purpose" aria-labelledby="purpose-title" className="relative overflow-hidden py-24 sm:py-32">
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(66,133,255,0.12),transparent_70%)]" />
+    <section ref={root} id="purpose" aria-labelledby="purpose-title" className="relative overflow-hidden section-y">
+      <div aria-hidden data-depth="0.4" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(66,133,255,0.12),transparent_70%)]" />
       <div className="container-x">
         <SectionHeading id="purpose-title" label="Our purpose" title="Mission & Vision" align="center" />
 
-        <div className="mt-16 grid gap-6 lg:mt-20 lg:grid-cols-2">
+        <div className="section-gap grid gap-6 lg:grid-cols-2">
           {/* Mission */}
-          <article data-mission className="noise relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,#0f1a3a,#0a1020_60%)] p-7 sm:p-10">
+          <article data-mission className="depth depth-hover noise relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,#0f1a3a,#0a1020_60%)] p-7 sm:p-10">
             <div aria-hidden className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-blue/20 blur-3xl" />
             <div data-purpose-text className="relative">
               <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-cyan"><Target className="h-4 w-4" /> Our mission</p>
@@ -87,7 +87,7 @@ export function Purpose() {
           </article>
 
           {/* Vision */}
-          <article data-vision className="noise relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(200deg,#1a1240,#0a1020_60%)] p-7 sm:p-10">
+          <article data-vision className="depth depth-hover noise relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(200deg,#1a1240,#0a1020_60%)] p-7 sm:p-10">
             <div aria-hidden className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet/25 blur-3xl" />
             <div data-purpose-text className="relative">
               <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-violet"><Rocket className="h-4 w-4" /> Our vision</p>

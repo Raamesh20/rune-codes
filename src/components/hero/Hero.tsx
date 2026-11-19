@@ -109,10 +109,10 @@ export function Hero() {
 
         {/* Visual */}
         <div data-hero="visual" data-hero-anim className="relative z-10 mx-auto w-full max-w-lg lg:col-span-6 lg:h-[min(76vh,680px)] lg:max-w-none">
-          <div data-parallax="visual" className="relative aspect-[4/5] w-full sm:aspect-square lg:absolute lg:-inset-x-[10%] lg:-inset-y-[7%] lg:aspect-auto lg:w-auto">
+          <div data-parallax="visual" className="relative aspect-[4/5] w-full sm:aspect-square lg:absolute lg:-inset-y-[7%] lg:left-0 lg:-right-[10%] lg:aspect-auto lg:w-auto">
             <StageMount />
           </div>
-          <div data-parallax="terminal" className="relative z-20 -mt-10 sm:-mt-16 lg:absolute lg:bottom-[2%] lg:left-0 lg:mt-0 lg:w-[min(54%,21rem)]">
+          <div data-parallax="terminal" className="relative z-20 -mt-10 sm:-mt-16 lg:absolute lg:bottom-[2%] lg:left-0 lg:mt-0 lg:w-[min(46%,18.5rem)]">
             <div data-hero="terminal" data-hero-anim className="[perspective:900px]">
               <Terminal />
             </div>

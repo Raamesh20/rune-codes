@@ -81,8 +81,8 @@ export function Contact() {
   const err = (k: keyof Fields) => (errors[k] ? <p id={`f-${k}-err`} className="mt-1.5 text-xs text-err">{errors[k]}</p> : null);
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden py-24 sm:py-32">
-      <div aria-hidden className="pointer-events-none absolute -left-40 bottom-0 -z-10 h-[34rem] w-[34rem] rounded-full bg-blue/10 blur-[140px]" />
+    <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden section-y">
+      <div aria-hidden data-depth="0.5" className="pointer-events-none absolute -left-40 bottom-0 -z-10 h-[34rem] w-[34rem] rounded-full bg-blue/10 blur-[140px]" />
       <div className="container-x">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
@@ -126,7 +126,7 @@ export function Contact() {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,#111a33,#0a1020)] p-6 sm:p-10">
+            <div className="depth relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,#111a33,#0a1020)] p-6 sm:p-10">
               <div aria-hidden className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet/20 blur-3xl" />
               <h3 className="relative font-display text-2xl font-semibold tracking-tight">Quick enquiry</h3>
               <p className="relative mt-2 text-sm text-mist">

@@ -87,8 +87,8 @@ export function Programs() {
   );
 
   return (
-    <section ref={root} id="programs" aria-labelledby="programs-title" className="relative overflow-x-clip py-24 sm:py-32">
-      <div aria-hidden className="pointer-events-none absolute right-0 top-20 -z-10 h-[36rem] w-[36rem] rounded-full bg-blue/10 blur-[140px]" />
+    <section ref={root} id="programs" aria-labelledby="programs-title" className="relative overflow-x-clip section-y">
+      <div aria-hidden data-depth="0.7" className="pointer-events-none absolute right-0 top-20 -z-10 h-[36rem] w-[36rem] rounded-full bg-blue/10 blur-[140px]" />
       <div className="container-x">
         <div data-programs-intro className="grid items-end gap-10 lg:grid-cols-12">
           <div className="lg:col-span-8">
@@ -105,7 +105,7 @@ export function Programs() {
           </div>
         </div>
 
-        <div className="mt-16 space-y-24 sm:mt-20 lg:space-y-32">
+        <div className="section-gap space-y-[clamp(5rem,9vw,8rem)]">
           {PROGRAMS.map((p, idx) => (
             <article key={p.id} id={`program-${p.id}`} data-program aria-labelledby={`program-${p.id}-title`} className="relative scroll-mt-28">
               <div className={`grid items-start gap-10 lg:grid-cols-12 lg:gap-12`}>

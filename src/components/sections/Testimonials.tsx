@@ -31,7 +31,8 @@ export function Testimonials() {
   const t = ITEMS[i];
 
   return (
-    <section id="testimonials" aria-labelledby="testimonials-title" className="relative py-24 sm:py-32">
+    <section id="testimonials" aria-labelledby="testimonials-title" className="relative section-y">
+      <div aria-hidden data-depth="0.5" className="pointer-events-none absolute right-[8%] top-1/3 -z-10 h-[26rem] w-[26rem] rounded-full bg-violet/10 blur-[130px]" />
       <div className="container-x">
         <SectionHeading id="testimonials-title" label="Testimonials" title="What Our Community Says" subtitle="Hear from parents and students who've experienced the Rune Codes difference." align="center" />
 
@@ -45,9 +46,9 @@ export function Testimonials() {
           onFocus={() => setHover(true)}
           onBlur={(e) => { if (!region.current?.contains(e.relatedTarget as Node)) setHover(false); }}
           onKeyDown={(e) => { if (e.key === "ArrowRight") go(i + 1); if (e.key === "ArrowLeft") go(i - 1); }}
-          className="relative mx-auto mt-14 max-w-4xl"
+          className="section-gap relative mx-auto max-w-4xl"
         >
-          <div className="noise relative min-h-[22rem] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,#111a33,#0a1020)] p-8 sm:min-h-[20rem] sm:p-14">
+          <div className="depth noise relative min-h-[22rem] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,#111a33,#0a1020)] p-8 sm:min-h-[20rem] sm:p-14">
             <div aria-hidden className="absolute -right-16 -top-16 h-64 w-64 rounded-full blur-3xl transition-colors duration-700" style={{ background: `${t.accent}30` }} />
             <span aria-hidden className="absolute left-6 top-2 font-display text-[9rem] leading-none text-white/[0.05] sm:left-10">“</span>
             <div aria-live={autoplay ? "off" : "polite"}>

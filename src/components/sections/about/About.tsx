@@ -70,12 +70,12 @@ export function About() {
   const V = VALUES[active];
 
   return (
-    <section ref={root} id="about" aria-labelledby="about-title" className="relative overflow-x-clip py-24 sm:py-32">
-      <div aria-hidden className="pointer-events-none absolute left-0 top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-violet/10 blur-[120px]" />
+    <section ref={root} id="about" aria-labelledby="about-title" className="relative overflow-x-clip section-y">
+      <div aria-hidden data-depth="0.6" className="pointer-events-none absolute left-0 top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-violet/10 blur-[120px]" />
       <div className="container-x">
         <SectionHeading id="about-title" label="Who we are" title="About Rune Codes" />
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="section-gap grid gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-7">
             <p data-story className="font-display text-2xl font-medium leading-snug tracking-tight sm:text-3xl lg:text-[2.35rem] lg:leading-[1.2]">
               {STORY.split(" ").map((w, i) => (
@@ -93,7 +93,7 @@ export function About() {
           </div>
 
           <figure data-quote className="relative lg:col-span-5">
-            <div className="noise relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(150deg,#13204a_0%,#0c1224_55%,#1a1240_100%)] p-8 sm:p-10">
+            <div className="depth noise relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(150deg,#13204a_0%,#0c1224_55%,#1a1240_100%)] p-8 sm:p-10">
               <div aria-hidden className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-blue/30 blur-3xl" />
               <svg aria-hidden viewBox="0 0 48 36" className="h-10 w-12 text-cyan"><path fill="currentColor" d="M0 36V22C0 10 6 2 18 0l2 5c-6 2-9 6-9 12h8v19H0Zm28 0V22c0-12 6-20 18-22l2 5c-6 2-9 6-9 12h8v19H28Z" /></svg>
               <blockquote className="relative mt-6 font-display text-2xl font-semibold leading-snug tracking-tight sm:text-[1.9rem]">
@@ -107,7 +107,7 @@ export function About() {
         </div>
 
         {/* Core values explorer */}
-        <div data-values className="mt-20 grid gap-6 lg:mt-28 lg:grid-cols-12 lg:gap-10">
+        <div data-values className="mt-[clamp(4rem,8vw,7rem)] grid gap-6 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
             <h3 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">Four values behind every lesson</h3>
             <p className="mt-3 text-mist">Select a value to see it come to life.</p>
@@ -151,7 +151,7 @@ export function About() {
             id="value-panel"
             role="tabpanel"
             aria-labelledby={`value-tab-${V.key}`}
-            className="relative min-h-[20rem] overflow-hidden rounded-[2rem] border border-white/10 bg-navy/80 sm:min-h-[24rem] lg:col-span-7"
+            className="depth relative min-h-[20rem] overflow-hidden rounded-[2rem] border border-white/10 bg-navy/80 sm:min-h-[24rem] lg:col-span-7"
           >
             <div aria-hidden className="grid-bg absolute inset-0 opacity-60" />
             <div aria-hidden className="absolute -bottom-24 left-1/2 h-64 w-[80%] -translate-x-1/2 rounded-full blur-3xl transition-colors duration-700" style={{ background: `${V.accent}33` }} />

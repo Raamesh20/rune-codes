@@ -73,10 +73,10 @@ export function StageMount() {
       <div
         inert={show3d}
         aria-hidden={show3d || undefined}
-        className={`absolute left-1/2 top-[53%] h-[66%] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 lg:left-[64%] lg:h-[60%] ${show3d ? "pointer-events-none opacity-0" : "opacity-100"}`}
+        className={`absolute left-1/2 top-[53%] h-[66%] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 lg:left-[67%] lg:h-[60%] ${show3d ? "pointer-events-none opacity-0" : "opacity-100"}`}
         style={{ aspectRatio: `${mascotImg.width} / ${mascotImg.height}` }}
       >
-        <Mascot pose="greet" interactive priority bubbleSide="left" message="Hi! Ready to build something amazing?" sizes="(min-width: 1024px) 420px, 70vw" />
+        <Mascot pose="greet" interactive priority bubbleSide="top" message="Hi! Ready to build something amazing?" sizes="(min-width: 1024px) 420px, 70vw" />
       </div>
 
       {use3d && (

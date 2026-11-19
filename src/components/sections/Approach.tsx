@@ -54,12 +54,12 @@ export function Approach() {
   );
 
   return (
-    <section ref={root} id="approach" aria-labelledby="approach-title" className="relative overflow-hidden py-24 sm:py-32">
+    <section ref={root} id="approach" aria-labelledby="approach-title" className="relative overflow-hidden section-y">
       <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 -z-10 opacity-40 [mask-image:linear-gradient(transparent,#000_20%,#000_80%,transparent)]" />
       <div className="container-x">
         <SectionHeading id="approach-title" label="Our approach" title="How We Teach" subtitle="Personalized learning experience designed for every student's success." align="center" />
 
-        <ol data-journey className="relative mx-auto mt-16 max-w-5xl sm:mt-20">
+        <ol data-journey className="section-gap relative mx-auto max-w-5xl">
           {/* track */}
           <span aria-hidden className="absolute bottom-6 left-[1.375rem] top-6 w-px bg-white/10 md:left-1/2 md:-translate-x-1/2" />
           <span aria-hidden data-journey-line className="absolute bottom-6 left-[1.375rem] top-6 w-[2px] bg-gradient-to-b from-cyan via-blue to-violet shadow-[0_0_14px_rgba(39,216,255,0.6)] md:left-1/2 md:-translate-x-1/2" />
@@ -75,7 +75,7 @@ export function Approach() {
                   </span>
                 </div>
                 <div data-stop-card className={`${right ? "md:order-3" : "md:order-1 md:text-right"}`}>
-                  <div className="group relative rounded-2xl border border-white/10 bg-navy/70 p-5 transition-colors duration-300 hover:border-cyan/40 sm:p-6">
+                  <div className="depth depth-hover group relative rounded-2xl border border-white/10 bg-navy/70 p-5 transition-colors duration-300 hover:border-cyan/40 sm:p-6">
                     <p className={`font-mono text-[0.68rem] uppercase tracking-[0.2em] text-cyan`}>
                       Step {String(i + 1).padStart(2, "0")} · {s.tag}
                     </p>

@@ -8,9 +8,7 @@ const isPages = process.env.GITHUB_PAGES === "1";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const nextConfig: NextConfig = {
-  ...(isPages
-    ? { output: "export" as const, basePath, trailingSlash: true, images: { unoptimized: true } }
-    : { cacheComponents: true, partialPrefetching: true }),
+  ...(isPages ? { output: "export" as const, basePath, trailingSlash: true, images: { unoptimized: true } } : {}),
   turbopack: {
     root: __dirname,
     rules: {

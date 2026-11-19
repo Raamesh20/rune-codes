@@ -9,6 +9,7 @@ import { Playground } from "@/components/sections/playground/Playground";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Contact } from "@/components/sections/Contact";
 import { MascotCompanion } from "@/components/mascot/MascotCompanion";
+import { ScrollFX } from "@/components/layout/ScrollFX";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       </main>
       <Footer />
       <MascotCompanion />
+      <ScrollFX />
     </>
   );
 }

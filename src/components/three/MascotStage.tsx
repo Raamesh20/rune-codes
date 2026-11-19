@@ -150,7 +150,7 @@ function Scene({ src, aspect, compact, onReady, onHover, pointer }: Omit<StagePr
   const planeH = vh * (compact ? 0.66 : 0.6);
   const planeW = planeH * aspect;
   const floorY = -vh * (compact ? 0.36 : 0.33);
-  const baseX = compact ? 0 : vw * 0.14;
+  const baseX = compact ? 0 : vw * 0.17;
 
   const tex = useTexture(src, (t) => {
     const texture = Array.isArray(t) ? t[0] : t;
@@ -351,8 +351,9 @@ function Scene({ src, aspect, compact, onReady, onHover, pointer }: Omit<StagePr
     state.camera.lookAt(0, 0, 0);
   });
 
-  const panelX = compact ? -vw * 0.27 : -vw * 0.3;
-  const panelY = compact ? vh * 0.38 : vh * 0.26;
+  // Panel sits in the empty area left of the character, above the terminal and clear of the copy column.
+  const panelX = compact ? -vw * 0.27 : -vw * 0.24;
+  const panelY = compact ? vh * 0.38 : vh * 0.13;
   const df = compact ? 3.0 : 2.4;
   const LINES: { a: Action; label: string }[] = [
     { a: "jump", label: "rune.jump()" },
@@ -441,19 +442,14 @@ function Scene({ src, aspect, compact, onReady, onHover, pointer }: Omit<StagePr
               </li>
             ))}
           </ul>
+          <div className="flex flex-wrap gap-x-3 gap-y-0.5 border-t border-white/10 px-3 py-2 text-[0.68rem]">
+            <span><span className="tok-var">mood</span><span className="tok-op">=</span><span className="tok-str">&quot;{status.mood}&quot;</span></span>
+            <span><span className="tok-var">clicks</span><span className="tok-op">=</span><span className="tok-num">{status.clicks}</span></span>
+            <span><span className="tok-var">last</span><span className="tok-op">=</span><span className="tok-fn">{status.last}</span></span>
+          </div>
         </div>
       </Html>
 
-      {/* Live status panel reflecting interactions */}
-      {!compact && (
-        <Html transform distanceFactor={df} position={[vw * 0.31, vh * 0.36, 0.2]} rotation={[0, -0.25, 0]} zIndexRange={[24, 0]} style={{ pointerEvents: "none" }}>
-          <div className="w-[11.5rem] rounded-xl border border-white/15 bg-[#0b1226]/80 p-3 font-mono text-[0.72rem] leading-6 shadow-[0_20px_60px_-20px_rgba(139,92,246,0.5)] backdrop-blur-md">
-            <p><span className="tok-var">mood</span> <span className="tok-op">=</span> <span className="tok-str">&quot;{status.mood}&quot;</span></p>
-            <p><span className="tok-var">clicks</span> <span className="tok-op">=</span> <span className="tok-num">{status.clicks}</span></p>
-            <p><span className="tok-var">last</span> <span className="tok-op">=</span> <span className="tok-fn">{status.last}</span></p>
-          </div>
-        </Html>
-      )}
     </>
   );
 }

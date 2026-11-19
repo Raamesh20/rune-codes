@@ -341,3 +341,53 @@ input[type="range"].range::-moz-range-thumb {
   from { opacity: 0; transform: translateY(8px) scale(0.8); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
+
+/* ───────────────────────── Layout rhythm & depth ───────────────────────── */
+@utility section-y {
+  padding-block: clamp(5rem, 9vw, 8rem);
+}
+@utility section-gap {
+  margin-top: clamp(3rem, 5.5vw, 4.75rem);
+}
+/* Layered elevation for primary panels: top highlight, contact edge, long soft drop, faint brand glow */
+@utility depth {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.06),
+    0 1px 0 rgb(0 0 0 / 0.4),
+    0 24px 60px -30px rgb(0 0 0 / 0.85),
+    0 50px 120px -60px rgb(66 133 255 / 0.28);
+}
+@utility depth-hover {
+  transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo), border-color 0.3s;
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.08),
+        0 1px 0 rgb(0 0 0 / 0.4),
+        0 34px 70px -30px rgb(0 0 0 / 0.9),
+        0 60px 140px -60px rgb(39 216 255 / 0.35);
+    }
+  }
+}
+
+/* Soft glowing seam between consecutive sections */
+main > section + section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(72rem, 88%);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgb(66 133 255 / 0.35) 25%, rgb(39 216 255 / 0.55) 50%, rgb(139 92 246 / 0.35) 75%, transparent);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* Alternating tonal bands give the long page a calmer rhythm and more depth */
+#purpose,
+#approach,
+#testimonials {
+  background: linear-gradient(180deg, transparent, rgb(12 18 36 / 0.55) 16%, rgb(12 18 36 / 0.55) 84%, transparent);
+}

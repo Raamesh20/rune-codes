@@ -63,8 +63,8 @@ export function Playground() {
   const bubble = feedback ? (feedback.kind === "success" ? "You did it!" : feedback.kind === "mistake" ? "Hmm, let's debug that." : "Nice thinking!") : INTRO[mode];
 
   return (
-    <section ref={root} id="playground" aria-labelledby="playground-title" className="relative overflow-hidden py-24 sm:py-32">
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_50%_30%,rgba(139,92,246,0.14),transparent_70%)]" />
+    <section ref={root} id="playground" aria-labelledby="playground-title" className="relative overflow-hidden section-y">
+      <div aria-hidden data-depth="0.4" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_50%_30%,rgba(139,92,246,0.14),transparent_70%)]" />
       <div className="container-x">
         <div data-pg-heading className="mx-auto max-w-3xl text-center">
           <p className="eyebrow justify-center">Interactive playground</p>
@@ -74,7 +74,7 @@ export function Playground() {
           <p className="mt-5 text-lg text-mist">Discover how fun coding can be.</p>
         </div>
 
-        <div data-pg-panel className="mt-14 grid gap-6 lg:grid-cols-12">
+        <div data-pg-panel className="section-gap grid gap-6 lg:grid-cols-12">
           <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-navy/90 shadow-[0_40px_120px_-40px_rgba(139,92,246,0.4)] lg:col-span-9">
             <div role="tablist" aria-label="Playground modes" className="flex border-b border-white/10">
               {MODES.map((m, i) => {

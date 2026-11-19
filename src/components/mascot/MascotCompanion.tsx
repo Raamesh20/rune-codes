@@ -20,9 +20,17 @@ const STOPS: Stop[] = [
   { id: "contact", hide: true },
 ];
 
-const W = 112;
+const W = 84;
 const H = Math.round((W * mascotImg.height) / mascotImg.width);
-const MARGIN = 24;
+/** Width of the page content (container max 80rem minus its 2rem side padding). */
+const CONTENT = 1216;
+/** Only appear when the empty margin beside the content can fit the mascot, so it never covers content. */
+const MIN_FREE = W + 16;
+const freeSpace = () => Math.max(0, (window.innerWidth - CONTENT) / 2);
+const xFor = (s: "left" | "right") => {
+  const inset = Math.max(4, (freeSpace() - W) / 2);
+  return s === "left" ? inset : window.innerWidth - inset - W;
+};
 const STORE_KEY = "rc-companion-hidden";
 
 /**
@@ -33,6 +41,7 @@ export function MascotCompanion() {
   const wrap = useRef<HTMLDivElement>(null);
   const body = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
+  const [free, setFree] = useState(0);
   const [heroVisible, setHeroVisible] = useState(true);
   const [stop, setStop] = useState<Stop | null>(null);
   const [line, setLine] = useState<string | null>(null);
@@ -45,11 +54,15 @@ export function MascotCompanion() {
 
   // Only on large screens with a fine pointer; respects a previous dismissal this session.
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px) and (pointer: fine)");
-    const update = () => setEnabled(mq.matches);
+    const mq = window.matchMedia("(pointer: fine)");
+    const update = () => {
+      setFree(freeSpace());
+      setEnabled(mq.matches && freeSpace() >= MIN_FREE);
+    };
     update();
     mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    window.addEventListener("resize", update);
+    return () => { mq.removeEventListener("change", update); window.removeEventListener("resize", update); };
   }, []);
 
   // Track hero visibility and the current section.
@@ -77,7 +90,6 @@ export function MascotCompanion() {
     const el = wrap.current;
     if (!el) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const xFor = (s: "left" | "right") => (s === "left" ? MARGIN : window.innerWidth - W - MARGIN);
 
     if (!want) {
       if (shown.current) {
@@ -99,12 +111,13 @@ export function MascotCompanion() {
       side.current = targetSide;
       if (reduce) gsap.set(el, { x: xFor(targetSide) });
       else {
-        const dir = targetSide === "left" ? -1 : 1;
+        // Dip below the screen edge on one side and pop up on the other, so it never crosses the content.
         gsap.timeline()
           .to(el, { scaleY: 0.86, scaleX: 1.08, duration: 0.14, ease: "power2.out", transformOrigin: "50% 100%" })
-          .to(el, { x: xFor(targetSide), duration: 1.1, ease: "power1.inOut" })
-          .to(el, { y: -Math.min(260, window.innerHeight * 0.3), rotation: 12 * dir, scaleY: 1.06, scaleX: 0.96, duration: 0.55, ease: "power2.out" }, "<")
-          .to(el, { y: 0, rotation: 0, duration: 0.55, ease: "power2.in" }, ">")
+          .to(el, { y: H + 40, scaleY: 1, scaleX: 1, duration: 0.4, ease: "power2.in" })
+          .set(el, { x: xFor(targetSide) })
+          .to(el, { y: -18, duration: 0.45, ease: "power2.out" })
+          .to(el, { y: 0, duration: 0.25, ease: "power2.in" })
           .to(el, { scaleY: 0.9, scaleX: 1.08, duration: 0.1 })
           .to(el, { scaleY: 1, scaleX: 1, duration: 0.45, ease: "elastic.out(1, 0.45)" });
       }
@@ -119,7 +132,7 @@ export function MascotCompanion() {
   useEffect(() => {
     const onResize = () => {
       if (!wrap.current || !shown.current) return;
-      gsap.set(wrap.current, { x: side.current === "left" ? MARGIN : window.innerWidth - W - MARGIN });
+      gsap.set(wrap.current, { x: xFor(side.current) });
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -160,7 +173,8 @@ export function MascotCompanion() {
 
   if (!enabled) return null;
 
-  const onRight = targetSide === "right";
+  // Bubble sits above the head and is limited to the free margin width.
+  const bubbleW = Math.max(W, Math.floor(free) - 8);
   return (
     <div
       ref={wrap}
@@ -176,9 +190,9 @@ export function MascotCompanion() {
         <button type="button" onClick={dismiss} aria-label="Hide the mascot companion" className="pointer-events-auto absolute -top-1 right-0 grid h-6 w-6 place-items-center rounded-full border border-white/15 bg-navy text-mist hover:text-snow">
           <X className="h-3 w-3" />
         </button>
-        <div aria-live="polite" className={`absolute bottom-[72%] ${onRight ? "right-[88%]" : "left-[88%]"}`}>
+        <div aria-live="polite" className="absolute bottom-[calc(100%+6px)] left-1/2 -translate-x-1/2" style={{ width: bubbleW }}>
           {line && (
-            <p key={line} className="glass w-max max-w-[13rem] animate-[bubble-in_.35s_cubic-bezier(.34,1.56,.64,1)] rounded-2xl px-3.5 py-2 text-[0.8rem] font-medium leading-snug text-snow shadow-[0_12px_40px_-12px_rgba(66,133,255,0.6)]">
+            <p key={line} className="glass mx-auto w-max max-w-full animate-[bubble-in_.35s_cubic-bezier(.34,1.56,.64,1)] rounded-2xl px-3 py-2 text-center text-[0.75rem] font-medium leading-snug text-snow shadow-[0_12px_40px_-12px_rgba(66,133,255,0.6)]">
               {line}
             </p>
           )}
